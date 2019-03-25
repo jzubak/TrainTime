@@ -1,5 +1,3 @@
-// src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js">
-//   Initialize Firebase
 $(document).ready(function () {
 
     var config = {
@@ -12,12 +10,13 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
     var database = firebase.database();
-    // initialize employee info
+    
     var name = $("#Train-Name").val();
     var destination = $("#Destination").val();
     var frequency = $("#Frequency").val();
-    var next = $("#Next-Arrival").val();
-    var away = moment().diff(next, "#Minutes-Away");
+    var first = $("#First-Arrival").val();
+    var next = moment().endOf(frequency).fromNow("#Next-Arrival");
+    var away = moment().endOf(next).fromNow("#Minutes-Away");
     console.log(name);
 
 
@@ -26,24 +25,20 @@ $(document).ready(function () {
         var newtrain = snapshot.val().name;
         var newdestination = snapshot.val().destination;
         var newfreq = snapshot.val().frequency;
-        var newnext = snapshot.val().next;
+        var newnext = snapshot.val().first;
 
-        var erow = $("<tr></tr>")
+        var trainrow = $("<tr></tr>")
         var tdata1 = $("<td>" + newtrain + "</td>");
         var tdata2 = $("<td>" + newdestination + "</td>");
         var tdata3 = $("<td>" + newfreq + "</td>");
         var tdata4 = $("<td>" + newnext + "</td>");
         var tdata5 = $("<td>" + away + "</td>");
 
-        //append data boxes to row
-
-        erow.append(tdata1, tdata2, tdata3, tdata4, tdata5);
-        $("#tablebody").append(erow);
+        trainrow.append(tdata1, tdata2, tdata3, tdata4, tdata5);
+        $("#tablebody").append(trainrow);
 
 
     })
-
-
 
     $("#submit-button").on("click", (event) => {
         event.preventDefault();
@@ -51,7 +46,7 @@ $(document).ready(function () {
         var trainname = $("#Train-Name").val();
         var traindestination = $("#Destination").val();
         var trainfreq = $("#Frequency").val();
-        var trainnext = $("#Next-Arrival").val();
+        var trainnext = $("#First-Arrival").val();
 
         // var nTrain = {
         //     name: trainname,
@@ -64,14 +59,11 @@ $(document).ready(function () {
                 name: trainname,
                 destination: traindestination,
                 frequency: trainfreq,
-                next: trainnext
+                first: trainnext
             }
         );
 
-
     });
-
-
 
 });
 
