@@ -2,11 +2,79 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Giphy Lookup App</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    <meta charset="UTF-8">
+    <title>Train Time Firebase</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="reset.css/reset.css"> -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans|Tillana" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    </body>
 </head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <h1 class="bg-dark border col-lg-12 d-flex justify-content-center p-4 rounded text-light">Its's Train Time
+                Baby!</h1>
+        </div>
+        <div class="row">
+            <div class="card col-lg-12 pl-0 pr-0">
+                <div class="bg-dark card-header text-light">
+                    Current Train Schedule
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablebody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="card col-lg-12 pl-0 pr-0">
+                <div class="bg-dark card-header text-light">
+                    Add A New Train
+                </div>
+                <div id="add-employees" class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="search-term">Train Name:</label>
+                            <input type="text" class="form-control" id="Train-Name" aria-describedby="Train-Name" value="hi">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Destination:</label>
+                            <input type="text" class="form-control" id="Destination" aria-describedby="Destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="start-date">First Train Time (HH:mm - military time):</label>
+                            <input type="text" class="form-control" id="Next-Arrival" aria-describedby="Next-Arrival">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthly-rate">Frequency (min):</label>
+                            <input type="text" class="form-control" id="Frequency" aria-describedby="Frequency">
+                        </div>
+                        <button id="submit-button" type="submit" class="bg-dark border-dark btn btn-primary text-light">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src ="app.js"></script>
+</html>
