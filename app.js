@@ -10,14 +10,32 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
     var database = firebase.database();
-    
+
     var name = $("#Train-Name").val();
     var destination = $("#Destination").val();
     var frequency = $("#Frequency").val();
     var first = $("#First-Arrival").val();
-    var next = moment().endOf(frequency).fromNow("#Next-Arrival");
-    var away = moment().endOf(next).fromNow("#Minutes-Away");
-    console.log(name);
+
+    //calculate the next train arrival based on first train and current time
+    var currentTime = moment().format("HH:mm");
+    console.log(currentTime);
+    var firstMoment = moment(first, "HH:mm").subtract(1, "years");
+    console.log(firstMoment);
+    console.log(currentTime);
+
+    var difference = moment().diff(moment(firstMoment),"minutes");
+    console.log(difference);
+    var remainder = difference % frequency;
+
+    var next = Math.floor(moment("HH:mm").diff(firstMoment));
+    console.log(moment("HH:mm").diff(firstMoment));
+
+   
+
+    //calculate how much longer until the train based on first train, current time, frequency 
+    var away = frequency - remainder;
+    // "#Minutes-Away");
+   
 
 
 
